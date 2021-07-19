@@ -101,7 +101,6 @@
                         for (let i = 0; i < wordlength; i++) {
                             text += "<div id=\"item"+i+"\"></div>";
                         }
-                        console.log(text);
                         document.getElementById("grid-container-id").innerHTML=text;
                     },
                     error: function () {
@@ -114,16 +113,11 @@
               if(word.length==0) {
                 alert("Could not fetch word from server. Please try again after refreshing page");
                 let num = buttonRef.val().charCodeAt(0)-64;
-                console.log(num);
                 let charbuttonid = "button"+num;
                 document.getElementById(charbuttonid).disabled=false;
                 return;
               }
               var char = buttonRef.val();
-              
-              console.log(char);
-              console.log(countTries);
-              console.log(word);
               var index = word.indexOf(char);
               if(index != -1) {
                 document.getElementById("item"+index).innerText=char;
