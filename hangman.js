@@ -2,6 +2,7 @@ var countTries = 0;
 var word = "";
 var correctlyGuessedChars = 0;
 var domHangmanImgSrc = document.getElementById("hangmanimg");
+var domWordGrid = document.getElementById("grid-container-id");
 
 function nextButtonFunction() {
     domHangmanImgSrc.src = "Images/Hangman-0.png";
@@ -24,17 +25,17 @@ function nextButtonFunction() {
             for (let i = 0; i < wordlength; i++) {
                 text += "<div id=\"item" + i + "\"></div>";
             }
-            document.getElementById("grid-container-id").innerHTML = text;
+            domWordGrid.innerHTML = text;
         },
         error: function() {
-            alert("Could not fetch word from server. Please try again");
+            alert("Could not fetch word from server. Please try again.");
         }
     });
 }
 
 function charButtonFun(buttonRef) {
     if (word.length == 0) {
-        alert("Could not fetch word from server. Please try again after refreshing page");
+        alert("Could not fetch word from server. Please try again after refreshing page.");
         let num = buttonRef.val().charCodeAt(0) - 64;
         let charbuttonid = "button" + num;
         document.getElementById(charbuttonid).disabled = false;
@@ -57,13 +58,15 @@ function charButtonFun(buttonRef) {
         }
     } else {
         countTries++;
-        domHangmanImgSrc.src = "Images/Hangman-" + countTries + ".png";
+        if (countTries <= 6) {
+            domHangmanImgSrc.src = "Images/Hangman-" + countTries + ".png";
+        }
     }
     if (correctlyGuessedChars == word.length) {
         alert("Correct, " + word + " is the word!" + " Heading to next word.");
         nextButtonFunction();
-    } else if (countTries == 6) {
-        alert("Hanged, " + word + " was the word! Press okay to start again.");
+    } else if (countTries == 7) {
+        alert("Hanged, " + word + " was the word! Press OK to start again.");
         nextButtonFunction();
     }
 }
