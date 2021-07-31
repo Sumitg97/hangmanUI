@@ -1,4 +1,4 @@
-# Hangman UI
+# Hangman UI (https://hangmanui.herokuapp.com/)
 Hangman is a word guessing game for entertainment and learning purpose.
 
 You'll have to guess a word of given length chosen randomly. For this you'll get 7 attempts per word. If you guess a character correctly, it will be displayed at respective position in word. But if you guess a wrong character, the person will get closer to hanging by a step. If you exhaust the number of attempts, that person will be hanged.
